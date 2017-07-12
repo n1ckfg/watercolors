@@ -3,15 +3,15 @@
 #include "ofMain.h"
 #include "WaterColorCanvas.h"
 
-class testApp : public ofBaseApp{
+class ofApp : public ofBaseApp {
 
 	public:
 		void setup();
 		void update();
 		void draw();
     
-    void strokeDraw();
-    void clearLayers();
+        void strokeDraw();
+        void clearLayers();
     
 		void keyPressed(int key);
 		void keyReleased(int key);
@@ -23,17 +23,19 @@ class testApp : public ofBaseApp{
 		void dragEvent(ofDragInfo dragInfo);
 		void gotMessage(ofMessage msg);
     
-    ofImage bg;
-    ofImage brush;
-    WaterColorCanvas canvas;
+        ofImage bg;
+        ofImage brush;
+        WaterColorCanvas canvas;
+        
+        ofPoint pos, prev, vec;
+        float width, currentWidth;
+        int currentPigment;
+        bool pressed;
+        bool debugText;
     
-    ofPoint pos, prev, vec;
-    float width, currentWidth;
-    int currentPigment;
-    bool pressed;
+        int state;
+        static const int STATE_WATER = 0;
+        static const int STATE_PIGMENT = 1;
+        static const int STATE_MIX = 2;
     
-    int state;
-    static const int STATE_WATER = 0;
-    static const int STATE_PIGMENT = 1;
-    static const int STATE_MIX = 2;
 };

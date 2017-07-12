@@ -1,7 +1,7 @@
-#include "testApp.h"
+#include "ofApp.h"
 
 //--------------------------------------------------------------
-void testApp::setup(){
+void ofApp :: setup() {
     ofSetLogLevel(OF_LOG_ERROR);
 
     bg.loadImage("bg_white.png");
@@ -16,38 +16,38 @@ void testApp::setup(){
     currentPigment = 0;
     width = 120;
     ofSetFrameRate(30);
-    
+    debugText = true;
 }
 
 //--------------------------------------------------------------
-void testApp::update(){
-    
-    
-    if (pressed) {strokeDraw();}
+void ofApp :: update() {
+    if (pressed) strokeDraw();
     
     canvas.update();
 }
 
 //--------------------------------------------------------------
-void testApp::draw(){
+void ofApp :: draw() {
     
     canvas.draw();
     
     glBlendFunc(GL_ZERO, GL_SRC_COLOR);
-    bg.draw(0,0);
+    bg.draw(0, 0, ofGetWidth(), ofGetHeight());
     glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
     
     
-    string str;
-    if (state == STATE_WATER) { str = "water"; }
-    if (state == STATE_PIGMENT) { str = "pigment"; }
-    if (state == STATE_MIX) { str = "mix"; }
-    str += "  width: " + ofToString(width) + "  pigment: " + ofToString(currentPigment);
-    ofDrawBitmapString(str, 20, 20);
+    if (debugText) {
+        string str;
+        if (state == STATE_WATER) str = "water";
+        if (state == STATE_PIGMENT) str = "pigment";
+        if (state == STATE_MIX) str = "mix";
+        str += "  width: " + ofToString(width) + "  pigment: " + ofToString(currentPigment);
+        ofDrawBitmapString(str, 20, 20);
+    }
 }
 
 //--------------------------------------------------------------
-void testApp::strokeDraw() {
+void ofApp :: strokeDraw() {
     int counter = 0;
     ofPoint target = ofPoint(mouseX, mouseY);
     float len = pos.distance(target);
@@ -84,7 +84,7 @@ void testApp::strokeDraw() {
             canvas.endPigmentDraw();
         }
         
-        if (pos.distance(target) < 10) {break;}
+        if (pos.distance(target) < 10) break;
     }
     
 }
@@ -92,7 +92,7 @@ void testApp::strokeDraw() {
 
 
 //--------------------------------------------------------------
-void testApp::keyPressed(int key){
+void ofApp :: keyPressed(int key) {
     
     switch (key) {
         case OF_KEY_LEFT:
@@ -107,6 +107,8 @@ void testApp::keyPressed(int key){
         case OF_KEY_DOWN:
             width = max(width - 10, 30.f);
             break;
+        case OF_KEY_TAB:
+            debugText = !debugText;
         case 'z':
             width = 150;
             break;
@@ -123,22 +125,22 @@ void testApp::keyPressed(int key){
 }
 
 //--------------------------------------------------------------
-void testApp::keyReleased(int key){
+void ofApp :: keyReleased(int key) {
 
 }
 
 //--------------------------------------------------------------
-void testApp::mouseMoved(int x, int y ){
+void ofApp :: mouseMoved(int x, int y ) {
 
 }
 
 //--------------------------------------------------------------
-void testApp::mouseDragged(int x, int y, int button){
+void ofApp :: mouseDragged(int x, int y, int button) {
 
 }
 
 //--------------------------------------------------------------
-void testApp::mousePressed(int x, int y, int button){
+void ofApp :: mousePressed(int x, int y, int button) {
     pressed = true;
     pos.set(mouseX, mouseY);
     vec.set(0,0);
@@ -146,21 +148,21 @@ void testApp::mousePressed(int x, int y, int button){
 }
 
 //--------------------------------------------------------------
-void testApp::mouseReleased(int x, int y, int button){
+void ofApp :: mouseReleased(int x, int y, int button) {
     pressed = false;
 }
 
 //--------------------------------------------------------------
-void testApp::windowResized(int w, int h){
+void ofApp :: windowResized(int w, int h) {
 
 }
 
 //--------------------------------------------------------------
-void testApp::gotMessage(ofMessage msg){
+void ofApp :: gotMessage(ofMessage msg) {
 
 }
 
 //--------------------------------------------------------------
-void testApp::dragEvent(ofDragInfo dragInfo){ 
+void ofApp :: dragEvent(ofDragInfo dragInfo) { 
 
 }
