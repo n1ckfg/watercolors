@@ -1,12 +1,13 @@
 #pragma once
 
 #include "ofMain.h"
+#include "ofxXmlSettings.h"
 #include "WaterColorCanvas.h"
 
 class ofApp : public ofBaseApp {
 
 	public:
-		void setup();
+        void setup();
 		void update();
 		void draw();
     
@@ -22,6 +23,10 @@ class ofApp : public ofBaseApp {
 		void windowResized(int w, int h);
 		void dragEvent(ofDragInfo dragInfo);
 		void gotMessage(ofMessage msg);
+    
+        ofxXmlSettings settings;
+        int sW;
+        int sH;
     
         ofImage bg;
         ofImage brush;

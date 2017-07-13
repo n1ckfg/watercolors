@@ -2,8 +2,13 @@
 
 //--------------------------------------------------------------
 void ofApp :: setup() {
-    ofSetLogLevel(OF_LOG_ERROR);
-
+    if (settings.loadFile("settings.xml")) {
+        sW = settings.getValue("settings:width",0);
+        sH = settings.getValue("settings:height",0);
+        debugText = settings.getValue("settings:debug",false);
+        //ofSetWindowShape(sW, sH);
+    }
+    
     bg.loadImage("bg_white.png");
     brush.loadImage("brush.png");
     
@@ -16,7 +21,6 @@ void ofApp :: setup() {
     currentPigment = 0;
     width = 120;
     ofSetFrameRate(30);
-    debugText = true;
 }
 
 //--------------------------------------------------------------
@@ -28,7 +32,6 @@ void ofApp :: update() {
 
 //--------------------------------------------------------------
 void ofApp :: draw() {
-    
     canvas.draw();
     
     glBlendFunc(GL_ZERO, GL_SRC_COLOR);

@@ -9,17 +9,14 @@ WaterColorCanvas :: WaterColorCanvas() {
     blurShader.load("shader.vert", "blur.frag");
     pigmentShader.load("shader.vert", "pigmentBleeding.frag");
     
-    int sW = ofGetWidth();
-    int sH = ofGetHeight();
-    
     tempFbo = new ofFbo();
-    tempFbo -> allocate(sW, sH, GL_RGBA32F); //temporary buffer
+    tempFbo -> allocate(ofGetWidth(), ofGetHeight(), GL_RGBA32F); //temporary buffer
     noiseFbo = new ofFbo();
-    noiseFbo -> allocate(sW, sH, GL_RGBA32F); //noise
+    noiseFbo -> allocate(ofGetWidth(), ofGetHeight(), GL_RGBA32F); //noise
     waterFbo = new ofFbo();
-    waterFbo -> allocate(sW, sH, GL_RGBA32F); //water
+    waterFbo -> allocate(ofGetWidth(), ofGetHeight(), GL_RGBA32F); //water
     paperFbo = new ofFbo();
-    paperFbo -> allocate(sW, sH, GL_RGBA32F); //fixed color
+    paperFbo -> allocate(ofGetWidth(), ofGetHeight(), GL_RGBA32F); //fixed color
     clearLayers();
 }
 
