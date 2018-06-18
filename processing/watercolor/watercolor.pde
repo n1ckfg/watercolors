@@ -8,6 +8,7 @@ void setup() {
   size(1280, 720, P2D);
   drop = new ArrayList<Drop>();
   bloomSetup();
+  opticalFlowSetup();
   //fluidSetup();
   tex.beginDraw();
   tex.background(0);
@@ -31,6 +32,9 @@ void draw() {
     }
   }
   tex.endDraw();
+  
+  opticalFlowDraw();
+  image(tex,0,0,width,height);
   bloomDraw();
   //fluidDraw();
   
