@@ -10,6 +10,7 @@ libs/openFrameworksCompiled/lib/*/*
 !libs/openFrameworksCompiled/lib/*/.gitkeep
 
 # apothecary
+scripts/apothecary
 
 # rule to avoid non-official addons going into git
 # see addons/.gitignore
